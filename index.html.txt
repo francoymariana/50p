@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador de Poemas</title>
+    <style>
+        body { font-family: 'Georgia', serif; background-color: #f4f1ea; display: flex; justify-content: center; padding: 50px; }
+        .container { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); max-width: 500px; width: 100%; text-align: center; }
+        input { padding: 10px; width: 60px; font-size: 18px; border: 1px solid #ccc; border-radius: 4px; }
+        button { padding: 10px 20px; font-size: 18px; background-color: #5a7d7c; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background-color: #456261; }
+        #resultado { margin-top: 30px; text-align: left; line-height: 1.6; font-style: italic; white-space: pre-line; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Antología Numérica</h2>
+    <p>Ingresa un número (1-50) para leer un poema:</p>
+    
+    <input type="number" id="numeroPoema" min="1" max="50" placeholder="0">
+    <button onclick="buscarPoema()">Leer</button>
+
+    <div id="resultado">
+        </div>
+</div>
+
+<script>
+    // Este es tu "archivo" de poemas
+    const poemas = {
+        1: "Pueblo mío, \nque por las mañanas despiertas \ncon el aroma del café y el rocío...",
+        2: "Caminante, no hay camino, \nse hace camino al andar. \nAl andar se hace el camino...",
+        15: "Este es el poema número 15, \nllegaste justo a tiempo \npara ver el sol caer.",
+        // Puedes seguir agregando hasta el 50
+    };
+
+    function buscarPoema() {
+        const num = document.getElementById('numeroPoema').value;
+        const visor = document.getElementById('resultado');
+        
+        if (poemas[num]) {
+            visor.innerHTML = `<h3>Poema Nro. ${num}</h3> ${poemas[num]}`;
+        } else {
+            visor.innerHTML = "<p style='color:red;'>Aún no hay un poema para este número o está fuera de rango.</p>";
+        }
+    }
+</script>
+
+</body>
+</html>

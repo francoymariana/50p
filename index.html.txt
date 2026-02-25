@@ -3,49 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buscador de Poemas</title>
+    <title>carmina poetae quinquagenarii</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    
     <style>
-        body { font-family: 'Georgia', serif; background-color: #f4f1ea; display: flex; justify-content: center; padding: 50px; }
-        .container { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); max-width: 500px; width: 100%; text-align: center; }
-        input { padding: 10px; width: 60px; font-size: 18px; border: 1px solid #ccc; border-radius: 4px; }
-        button { padding: 10px 20px; font-size: 18px; background-color: #5a7d7c; color: white; border: none; border-radius: 4px; cursor: pointer; }
-        button:hover { background-color: #456261; }
-        #resultado { margin-top: 30px; text-align: left; line-height: 1.6; font-style: italic; white-space: pre-line; }
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            background-color: #f8f9fa; 
+            display: flex; 
+            justify-content: center; 
+            padding: 40px 20px; 
+            color: #333; 
+            letter-spacing: -0.02em;
+        }
+
+        .container { 
+            background: white; 
+            padding: 50px; 
+            border-radius: 12px; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05); 
+            max-width: 600px; 
+            width: 100%; 
+            text-align: center; 
+        }
+
+        h2 { 
+            font-weight: 700; 
+            font-size: 1.1em; 
+            color: #999; 
+            margin-bottom: 5px; 
+            text-transform: lowercase; 
+            letter-spacing: 0.2em;
+        }
+
+        .instrucciones { 
+            font-size: 0.75em; 
+            color: #ccc; 
+            margin-bottom: 35px; 
+            font-weight: 400;
+            text-transform: uppercase;
+        }
+
+        input { 
+            padding: 12px; 
+            width: 80px; 
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px; 
+            border: 2px solid #eee; 
+            border-radius: 8px; 
+            text-align: center; 
+            outline: none; 
+        }
+
+        button { 
+            padding: 13px 28px; 
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px; 
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            background-color: #1a1a1a; 
+            color: white; 
+            border: none; 
+            border-radius: 8px;
+            margin-left: 10px;
+            cursor: pointer; 
+            transition: 0.3s;
+        }
+
+        button:hover { background-color: #444; }
+
+        #resultado { margin-top: 60px; animation: fadeIn 1s; }
+        
+        .titulo-poema { 
+            font-size: 1.1em; 
+            font-weight: 700; 
+            margin-bottom: 25px; 
+            color: #1a1a1a; 
+            text-align: left; 
+        }
+
+        .cuerpo-poema { 
+            line-height: 1.8; 
+            white-space: pre-line; 
+            font-size: 1.1em; 
+            font-weight: 300; 
+            margin-bottom: 40px; 
+            color: #333;
+            text-align: left; 
+        }
+
+        .autor-poema { 
+            text-align: right; 
+            font-weight: 700; 
+            font-size: 0.8em;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #000; 
+            border-top: 1px solid #eee; 
+            padding-top: 20px; 
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h2>Antología Numérica</h2>
-    <p>Ingresa un número (1-50) para leer un poema:</p>
+    <h2>carmina poetae quinquagenarii</h2>
+    <p class="instrucciones">— ingresá un número (1-50) —</p>
     
     <input type="number" id="numeroPoema" min="1" max="50" placeholder="0">
-    <button onclick="buscarPoema()">Leer</button>
+    <button onclick="buscarPoema()">Descubrir</button>
 
-    <div id="resultado">
-        </div>
+    <div id="resultado"></div>
 </div>
 
 <script>
-    // Este es tu "archivo" de poemas
-    const poemas = {
-        1: "Pueblo mío, \nque por las mañanas despiertas \ncon el aroma del café y el rocío...",
-        2: "Caminante, no hay camino, \nse hace camino al andar. \nAl andar se hace el camino...",
-        15: "Este es el poema número 15, \nllegaste justo a tiempo \npara ver el sol caer.",
-        // Puedes seguir agregando hasta el 50
+    const biblioteca = {
+        5: {
+            titulo: "Harlem",
+            texto: "What happens to a dream deferred?\n\nDoes it dry up\nlike a raisin in the sun?\nOr fester like a sore—\nAnd then run?\nDoes it stink like rotten meat?\nOr crust and sugar over—\nlike a syrupy sweet?\n\nMaybe it just sags\nlike a heavy load.\n\nOr does it explode?\n\n—\n\n¿Qué pasa con un sueño postergado?\n\n¿Se seca\nal sol como una uva al sol?\n¿O se abre como una llaga--\ny supura?\n¿Huele como carne podrida?\n¿O se endurece y se endulza--\ncomo el almíbar?\n\nTal vez se hunde\ncomo una carga pesada\n\n¿O quizás sólo estalla?",
+            autor: "Langston Hughes"
+        },
+        7: {
+            titulo: "Dos cuerpos",
+            texto: "Dos cuerpos frente a frente\nson a veces dos olas\ny la noche es océano.\n\nDos cuerpos frente a frente\nson a veces dos piedras\ny la noche desierto.\n\nDos cuerpos frente a frente\nson a veces raíces\nen la noche enlazadas.\n\nDos cuerpos frente a frente\nson a veces navajas\ny la noche relámpago.\n\nDos cuerpos frente a frente\nson dos astros que caen\nen un cielo vacío.",
+            autor: "Octavio Paz"
+        },
+        8: {
+            titulo: "Algo sucede",
+            texto: "Algo sucede\ncuando me detengo en mí,\nen mi silencio\ny puedo pensar,\nalgo se despeja,\nse alumbra\ny es como entrar\na otro lugar. Sí,\nhe venido así,\nsin que nada fuera mío,\nhe venido\nbuscando en mi silencio\nno sentirme esclava\nni sentirme vencida\ncada instante,\ncada instante esa\ndel mar\nen el poema",
+            autor: "Diana Bellessi"
+        },
+        11: {
+            titulo: "Amantes",
+            texto: "una flor\nno lejos de la noche\nmi cuerpo mudo\nse abre\na la delicada urgencia del rocío",
+            autor: "Alejandra Pizarnik"
+        },
+        13: {
+            titulo: "Una generación",
+            texto: "La noche oscura me dio unos ojos negros,\npero yo buscaré con ellos la luz.",
+            autor: "Gu Cheng"
+        },
+        16: {
+            titulo: "Es más que un héroe",
+            texto: "Es un dios a mis ojos –\nel hombre que tiene permiso\nde sentarse a tu lado – él\nque escucha íntimamente\nel dulce murmullo\nde tu voz, la tentadora\nrisa que acelera\nmi propio corazón. Si te encuentro\nde repente, no puedo\nhablar – se me rompe la lengua;\nuna llama delgada corre\nbajo mi piel, no veo nada,\neschuco solo el retumbar\nde mis propios oídos, sudo;\nmi cuerpo tiembla\ny me pongo más pálida\nque la hierba seca. En esos momentos\nla muerte no está lejos de mí.",
+            autor: "Safo"
+        },
+        18: {
+            titulo: "Cruces",
+            texto: "Profundo, en la sangre,\nvive el árbol de cada uno;\nde esta íntima madera\nserá la cruz.",
+            autor: "Diego Muzzio"
+        },
+        21: {
+            titulo: "La violencia es como la poesía",
+            texto: "La violencia es como la poesía, no se corrige.\nNo puedes cambiar el viaje de una navaja\nni la imagen del atardecer imperfecto para siempre.",
+            autor: "Roberto Bolaño"
+        },
+        22: {
+            titulo: "She Walks in Beauty",
+            texto: "She walks in beauty, like the night\nOf cloudless climes and starry skies;\nAnd all that’s best of dark and bright\nMeet in her aspect and her eyes;\nThus mellowed to that tender light\nWhich heaven to gaudy day denies.\n\nOne shade the more, one ray the less,\nHad half impaired the nameless grace\nWhich waves in every raven tress,\nOr softly lightens o’er her face;\nWhere thoughts serenely sweet express,\nHow pure, how dear their dwelling-place.\n\nAnd on that cheek, and o’er that brow,\nSo soft, so calm, yet eloquent,\nThe smiles that win, the tints that glow,\nBut tell of days in goodness spent,\nA mind at peace with all below,\nA heart whose love is innocent!",
+            autor: "Lord Byron"
+        },
+        45: {
+            titulo: "La repetición (Plaza Navona)",
+            texto: "Ningún amor termina,\nyace en la cara oscura de la mente\ncomo los objetos en el cuarto\nluego de apagar la lámpara\nEsas sombras no se apartan\noprimiendo una perilla\ncomo quien descorre un cortinado\npara llamar a la mañana.\nEs por eso que llegamos a olvidar\naun el nombre querido,\na besar labios idénticos\nsin reconocer\naquellos que solíamos besar.\nNingún amor termina:\nsiempre el azar lo trae\na la luz de los días presentes.\nPor eso quiero esconder los ojos\ntras cristales oscuros\ny desviar el haz de la linterna nocturna,\npues vuelvo a ver el turbante que usabas\nla tarde del vermut en Plaza Navona,\nel lanzallamas negro y los pajaritos.",
+            autor: "María Moreno"
+        },
+        47: {
+            titulo: "Falsamente tuyo",
+            texto: "Querida, encuentra lo que amas y deja que te mate. Deja que consuma de ti tu todo. Deja que se adhiera a tu espalda y te agobie hasta la eventual nada. Deja que te mate, y deja que devore tus restos. Porque de todas las cosas que te matarán, lenta o rápidamente, es mucho mejor ser asesinado por un amante.",
+            autor: "Charles Bukowski"
+        }
     };
 
     function buscarPoema() {
         const num = document.getElementById('numeroPoema').value;
         const visor = document.getElementById('resultado');
+        const poema = biblioteca[num];
         
-        if (poemas[num]) {
-            visor.innerHTML = `<h3>Poema Nro. ${num}</h3> ${poemas[num]}`;
+        if (poema) {
+            visor.innerHTML = `
+                <div class="titulo-poema">${poema.titulo}</div>
+                <div class="cuerpo-poema">${poema.texto}</div>
+                <div class="autor-poema">${poema.autor}</div>
+            `;
         } else {
-            visor.innerHTML = "<p style='color:red;'>Aún no hay un poema para este número o está fuera de rango.</p>";
+            visor.innerHTML = "<p style='color:#bbb; text-align:center; font-size: 0.9em;'>Ese número aún guarda silencio.</p>";
         }
     }
 </script>
 
 </body>
+</html>
+</script>
+
+</body>
+
 </html>
